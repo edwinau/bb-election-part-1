@@ -1,15 +1,18 @@
 $(document).ready(function() {
-
+  console.log("success")
   // Imagination!
 
     $.ajax({
-      url: 'bb-election-api.herokuapp.com',
-      method: 'GET'
+      url: 'https://bb-election-api.herokuapp.com',
+      method: 'GET',
+      data: {},
       dataType: 'json'
     }).done(function(data) {
       for (var i=0; i < data.candidates.length; i++) {
-        candidate = data.candidate[i]
-        $('<li>').html(candidate.name + ' has ' + candidate.votes + ' votes.').appendTo('#everyCandidate');
+        candidate = data.candidates[i]
+        var can=candidate.name + ' has ' + candidate.votes + ' votes.';
+        var item = $('<li>').html(can);
+        $('#everyCandidate').append(item);
       }
   });
 });
